@@ -4,11 +4,11 @@ import { motion } from 'framer-motion'
 export const SystemMapDemo: React.FC = () => {
   const nodes = [
     { id: 1, x: 50, y: 20, label: 'Student Achievement' },
-    { id: 2, x: 20, y: 50, label: 'Teacher Quality' },
-    { id: 3, x: 80, y: 50, label: 'School Resources' },
-    { id: 4, x: 30, y: 80, label: 'Parent Engagement' },
-    { id: 5, x: 70, y: 80, label: 'Community Support' },
-    { id: 6, x: 50, y: 60, label: 'Public Funding' },
+    { id: 2, x: 20, y: 45, label: 'Teacher Quality' },
+    { id: 3, x: 80, y: 45, label: 'School Resources' },
+    { id: 4, x: 30, y: 65, label: 'Parent Engagement' },
+    { id: 5, x: 70, y: 65, label: 'Community Support' },
+    { id: 6, x: 50, y: 50, label: 'Public Funding' },
   ]
 
   const connections = [
@@ -18,7 +18,6 @@ export const SystemMapDemo: React.FC = () => {
     { from: 5, to: 1 },
     { from: 6, to: 2 },
     { from: 6, to: 3 },
-    { from: 5, to: 4 },
   ]
 
   return (
@@ -190,11 +189,11 @@ export const SystemMapDemo: React.FC = () => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2 }}
-        className="absolute bottom-4 left-4 right-4"
+        className="absolute bottom-2 left-2 right-2 md:bottom-4 md:left-4 md:right-4"
       >
-        <div className="glass rounded-lg px-3 py-2 border border-white/10">
-          <p className="text-xs text-text-secondary">
-            <span className="text-accent-purple">Example:</span> "Show me the factors influencing student achievement"
+        <div className="glass rounded-lg px-2 py-1.5 md:px-3 md:py-2 border border-white/10">
+          <p className="text-[10px] md:text-xs text-text-secondary">
+            <span className="text-accent-purple">Prompt:</span> "Show factors influencing student achievement"
           </p>
         </div>
       </motion.div>
