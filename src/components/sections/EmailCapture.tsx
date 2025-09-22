@@ -35,19 +35,39 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({ className, variant =
 
     setIsLoading(true)
 
-    // Simulate API call - replace with actual backend later
-    setTimeout(() => {
-      // Store in localStorage for now
-      const existingEmails = JSON.parse(localStorage.getItem('systemic_waitlist') || '[]')
-      if (!existingEmails.includes(email)) {
-        const emailData = { email, wantsUpdates, timestamp: Date.now() }
-        existingEmails.push(emailData)
-        localStorage.setItem('systemic_waitlist', JSON.stringify(existingEmails))
-      }
+    try {
+      // Send to Google Sheets via Apps Script using FormData to avoid CORS preflight
+      const formData = new FormData()
+      formData.append('email', email)
+      formData.append('wantsUpdates', wantsUpdates.toString())
 
-      setIsSubmitted(true)
+      const response = await fetch('https://script.google.com/macros/s/AKfycbx0wRvR92b_BI1-VUYNaM74cXdHGBzFgrQgwdhhnVK52WZzxvrgTqgWFT9itmtfEoSi/exec', {
+        method: 'POST',
+        body: formData,
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setIsSubmitted(true)
+
+        // Also store in localStorage as backup
+        const existingEmails = JSON.parse(localStorage.getItem('systemic_waitlist') || '[]')
+        if (!existingEmails.find((entry: any) => entry.email === email)) {
+          const emailData = { email, wantsUpdates, timestamp: Date.now() }
+          existingEmails.push(emailData)
+          localStorage.setItem('systemic_waitlist', JSON.stringify(existingEmails))
+        }
+      } else {
+        setError('Something went wrong. Please try again.')
+        console.error('Submission error:', result.error)
+      }
+    } catch (error) {
+      console.error('Network error:', error)
+      setError('Network error. Please check your connection and try again.')
+    } finally {
       setIsLoading(false)
-    }, 1000)
+    }
   }
 
   const handleReset = () => {
