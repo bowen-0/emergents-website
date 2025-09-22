@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { SinglePageLayout } from './components/layout/SinglePageLayout'
+import { ScrollableLayout } from './components/layout/ScrollableLayout'
 import { SystemicIcon } from './components/icons/SystemicIcon'
 import { EmailCapture } from './components/sections/EmailCapture'
 import { SystemMapDemo } from './components/sections/SystemMapDemo'
@@ -35,7 +35,7 @@ const features = [
 function SystemicLanding({ onBack }: SystemicLandingProps) {
 
   return (
-    <SinglePageLayout>
+    <ScrollableLayout>
       <div className="w-full max-w-5xl mx-auto flex flex-col items-center justify-start gap-8 md:gap-12">
         {/* Back Button */}
         <motion.button
@@ -177,7 +177,7 @@ function SystemicLanding({ onBack }: SystemicLandingProps) {
           <p>A Miro App by Emergents</p>
         </motion.div>
       </div>
-    </SinglePageLayout>
+    </ScrollableLayout>
   )
 }
 
