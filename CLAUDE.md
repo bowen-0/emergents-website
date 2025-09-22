@@ -1,0 +1,95 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Development Commands
+
+```bash
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Lint code
+npm run lint
+
+# Preview production build
+npm run preview
+```
+
+## Project Architecture
+
+This is a React-based personal website with a glassmorphism design system built using:
+- **React 18** with TypeScript
+- **Vite** for build tooling
+- **Tailwind CSS** with custom design tokens
+- **Framer Motion** for animations
+
+### Routing Architecture
+
+The app uses a **client-side navigation pattern** without traditional routing:
+- `OnePage.tsx` serves as the main router with local state management
+- Navigation between pages is handled by `useState` with conditional rendering
+- Internal pages (like `/systemic`) are lazily loaded React components
+- External project links navigate to external URLs
+
+### Core Navigation Flow
+```
+App.tsx → OnePage.tsx → [main | systemic]
+├── main: Shows profile + project cards
+└── systemic: SystemicLanding.tsx (lazily loaded)
+```
+
+### Component Structure
+
+**Layout Components** (`src/components/layout/`):
+- `SinglePageLayout`: Full-screen layout with background effects
+- `ScrollableLayout`: Scrollable layout for content-heavy pages
+- `Container`, `Section`, `Grid`: Basic layout utilities
+
+**UI Components** (`src/components/ui/`):
+- `Button`, `Card`, `Badge`: Standard UI elements
+- `ProjectCard`, `CompactProjectCard`: Project showcase cards
+- `GlowOrb`: Animated background orbs for ambiance
+- `Navigation`: Navigation components
+
+**Section Components** (`src/components/sections/`):
+- `CompactProfile`: Main profile section
+- `EmailCapture`: Waitlist signup form
+- `SystemMapDemo`: Interactive demo visualization
+- `PersonalHero`, `ProjectsGrid`: Alternative layouts
+
+### Design System
+
+**Custom Tailwind Configuration** (`tailwind.config.js`):
+- Dark theme color palette with purple/pink accents
+- Glassmorphism utilities (`.glass`, `.glass-heavy`)
+- Custom animations (gradient, glow, float, shimmer)
+- Typography using Inter font with feature settings
+
+**Global Styles** (`src/styles/globals.css`):
+- Glassmorphism component classes
+- Gradient text utilities (`.gradient-text`)
+- Glow effects and hover states
+- Custom scrollbar styling
+
+**Key Design Tokens**:
+- Primary colors: `accent-purple`, `accent-pink`, `accent-blue`
+- Glass effects: `bg-glass-light`, `backdrop-blur-glass`
+- Text hierarchy: `text-primary`, `text-secondary`, `text-muted`
+
+### Project Configuration
+
+- **Styling**: Tailwind CSS with PostCSS
+- **Utils**: `cn()` utility using `clsx` and `tailwind-merge` for conditional classes
+- **Assets**: Public folder for images (`/profile.jpg`, `/emergents-logo.png`)
+- **TypeScript**: Strict configuration with Vite compilation
+
+### Key Patterns
+
+1. **Conditional Rendering Navigation**: Uses state-based page switching instead of routing
+2. **Glassmorphism Design**: Heavy use of backdrop-blur and glass effects
+3. **Animation Staging**: Framer Motion with staggered entrance animations
+4. **Responsive Design**: Mobile-first approach with `md:` breakpoints
+5. **Component Composition**: Reusable layout and UI components with consistent APIs

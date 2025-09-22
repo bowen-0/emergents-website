@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import { SinglePageLayout } from './components/layout/SinglePageLayout'
 import { CompactProfile } from './components/sections/CompactProfile'
 import { CompactProjectCard } from './components/ui/CompactProjectCard'
@@ -36,23 +37,7 @@ const socialLinks = {
 }
 
 function OnePage() {
-  const [currentPage, setCurrentPage] = useState<'main' | 'systemic'>('main')
-
-  // Handle navigation
-  if (currentPage === 'systemic') {
-    const SystemicLanding = React.lazy(() => import('./SystemicLanding'))
-    return (
-      <React.Suspense fallback={
-        <SinglePageLayout>
-          <div className="flex items-center justify-center h-full">
-            <div className="text-text-secondary">Loading...</div>
-          </div>
-        </SinglePageLayout>
-      }>
-        <SystemicLanding onBack={() => setCurrentPage('main')} />
-      </React.Suspense>
-    )
-  }
+  const navigate = useNavigate()
 
   return (
     <SinglePageLayout>
@@ -94,7 +79,7 @@ function OnePage() {
                 transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
                 onClick={() => {
                   if (project.internal && project.link === '/systemic') {
-                    setCurrentPage('systemic')
+                    navigate('/systemic')
                   }
                 }}
               >

@@ -4,13 +4,15 @@ import { cn } from '../../lib/utils'
 
 interface EmailCaptureProps {
   className?: string
+  variant?: 'default' | 'highlighted' | 'gradient' | 'floating' | 'banner'
 }
 
-export const EmailCapture: React.FC<EmailCaptureProps> = ({ className }) => {
+export const EmailCapture: React.FC<EmailCaptureProps> = ({ className, variant = 'default' }) => {
   const [email, setEmail] = useState('')
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [wantsUpdates, setWantsUpdates] = useState(true)
 
   const validateEmail = (email: string) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -38,7 +40,8 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({ className }) => {
       // Store in localStorage for now
       const existingEmails = JSON.parse(localStorage.getItem('systemic_waitlist') || '[]')
       if (!existingEmails.includes(email)) {
-        existingEmails.push(email)
+        const emailData = { email, wantsUpdates, timestamp: Date.now() }
+        existingEmails.push(emailData)
         localStorage.setItem('systemic_waitlist', JSON.stringify(existingEmails))
       }
 
@@ -53,24 +56,71 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({ className }) => {
     setError('')
   }
 
+  const getWrapperClasses = () => {
+    const base = 'w-full'
+
+    switch (variant) {
+      case 'highlighted':
+        return cn(base, 'p-8 rounded-2xl glass-heavy border-2 border-accent-purple/40 relative overflow-hidden shadow-lg shadow-accent-purple/10')
+      case 'gradient':
+        return cn(base, 'p-8 rounded-2xl bg-gradient-to-br from-accent-purple/15 via-accent-pink/8 to-accent-blue/10 backdrop-blur-md border border-white/30')
+      case 'floating':
+        return cn(base, 'p-12 rounded-2xl glass border-2 border-white/30 shadow-2xl shadow-accent-purple/20 relative')
+      case 'banner':
+        return cn(base, 'py-12 px-8 rounded-3xl bg-gradient-to-r from-accent-purple/10 via-accent-pink/5 to-accent-blue/10 border-2 border-gradient-to-r from-accent-purple/30 to-accent-pink/30')
+      default:
+        return base
+    }
+  }
+
+  const getTitleClasses = () => {
+    return variant === 'gradient' || variant === 'banner' ? 'gradient-text' : ''
+  }
+
   return (
-    <div className={cn('w-full', className)}>
-      <AnimatePresence mode="wait">
-        {!isSubmitted ? (
-          <motion.form
-            key="form"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onSubmit={handleSubmit}
-            className="space-y-4"
-          >
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold mb-2">Join the Waitlist</h3>
-              <p className="text-sm text-text-secondary">
-                Be the first to know when Systemic launches on Miro Marketplace
-              </p>
-            </div>
+    <div className={cn(getWrapperClasses(), className)}>
+      {/* Variant-specific background effects */}
+      {variant === 'highlighted' && (
+        <>
+          <div className="absolute inset-0 bg-gradient-to-r from-accent-purple/8 to-accent-pink/8 animate-pulse" />
+          <div className="absolute -top-2 -left-2 w-4 h-4 bg-accent-purple rounded-full animate-ping" />
+          <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-accent-pink rounded-full animate-ping [animation-delay:1s]" />
+        </>
+      )}
+
+      {variant === 'floating' && (
+        <>
+          <div className="absolute -top-1 -left-1 w-20 h-20 bg-accent-purple/20 rounded-full blur-xl" />
+          <div className="absolute -bottom-1 -right-1 w-20 h-20 bg-accent-pink/20 rounded-full blur-xl" />
+        </>
+      )}
+
+      {variant === 'banner' && (
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-4 left-4 w-32 h-32 bg-accent-purple rounded-full blur-3xl" />
+          <div className="absolute bottom-4 right-4 w-32 h-32 bg-accent-pink rounded-full blur-3xl" />
+        </div>
+      )}
+
+      <div className={variant !== 'default' ? 'relative z-10' : ''}>
+        <AnimatePresence mode="wait">
+          {!isSubmitted ? (
+            <motion.form
+              key="form"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onSubmit={handleSubmit}
+              className="space-y-6"
+            >
+              <div className="text-center mb-8">
+                <h3 className={cn('text-xl font-semibold mb-2', getTitleClasses())}>
+                  Join the Waitlist
+                </h3>
+                <p className="text-sm text-text-secondary">
+                  Be the first to know when Systemic launches on Miro Marketplace
+                </p>
+              </div>
 
             <div className="relative">
               <input
@@ -82,7 +132,7 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({ className }) => {
                 }}
                 placeholder="Enter your email"
                 className={cn(
-                  'w-full px-4 py-3 rounded-lg glass border transition-all duration-200',
+                  'w-full pl-12 pr-4 py-3 rounded-lg glass border transition-all duration-200',
                   'placeholder:text-text-muted focus:outline-none',
                   error
                     ? 'border-red-500/50 focus:border-red-500'
@@ -113,6 +163,20 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({ className }) => {
               )}
             </AnimatePresence>
 
+            {/* Checkbox */}
+            <div className="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="updates-checkbox"
+                checked={wantsUpdates}
+                onChange={(e) => setWantsUpdates(e.target.checked)}
+                className="mt-0.5 w-4 h-4 rounded border border-white/20 bg-transparent checked:bg-accent-purple checked:border-accent-purple focus:outline-none focus:ring-2 focus:ring-accent-purple/50"
+              />
+              <label htmlFor="updates-checkbox" className="text-sm text-text-secondary cursor-pointer">
+                Notify me about updates and new features. (Don't worry, I won't spam you.)
+              </label>
+            </div>
+
             <button
               type="submit"
               disabled={isLoading}
@@ -131,10 +195,6 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({ className }) => {
               {/* Shimmer effect on hover */}
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
             </button>
-
-            <p className="text-xs text-center text-text-muted">
-              We'll only use your email to notify you about the launch
-            </p>
           </motion.form>
         ) : (
           <motion.div
@@ -170,8 +230,9 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({ className }) => {
               Add another email
             </button>
           </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   )
 }
