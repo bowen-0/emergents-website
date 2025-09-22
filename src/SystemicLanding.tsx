@@ -177,7 +177,15 @@ function SystemicLanding({ onBack }: SystemicLandingProps) {
           transition={{ duration: 0.5, delay: 0.8 }}
           className="text-center text-sm text-text-muted mt-8"
         >
-          <p>A Miro App by Emergents</p>
+          <p>
+            A Miro App by Emergents | {' '}
+            <a
+              href="/systemic/privacy"
+              className="text-text-secondary hover:text-accent-purple transition-colors underline"
+            >
+              Privacy Policy
+            </a>
+          </p>
         </motion.div>
       </div>
     </ScrollableLayout>
