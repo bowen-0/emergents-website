@@ -11,7 +11,7 @@ import './styles/globals.css'
 const projects = [
   {
     title: 'Systemic',
-    description: 'Systems mapping platform that transforms prompts into visual maps, enabling intelligent workflow automation.',
+    description: 'Create systems maps in Miro with natural language. Visualise complex relationships.',
     icon: <SystemicIcon className="w-full h-full" />,
     techStack: ['React', 'TypeScript', 'Node.js', 'AI/ML', 'Miro API'],
     status: 'active' as const,
@@ -20,20 +20,20 @@ const projects = [
   },
   {
     title: 'Coachify',
-    description: 'Voice AI training platform for sales role-playing and professional development through conversational learning.',
+    description: 'Voice-powered AI role-play for sales teams. Train anytime, master your sales technique.',
     icon: <CoachifyIcon className="w-full h-full" />,
     techStack: ['Next.js', 'Python', 'Voice AI', 'OpenAI', 'WebRTC'],
     status: 'beta' as const,
-    link: '#',
+    link: 'https://getcoachify.com',
     internal: false,
   },
 ]
 
 const socialLinks = {
   github: 'https://github.com',
-  linkedin: 'https://linkedin.com',
-  twitter: 'https://twitter.com',
-  email: 'bowen@example.com',
+  linkedin: 'https://www.linkedin.com/in/bowen0/',
+  twitter: 'https://x.com/BowenFeng1',
+  email: 'bowen@emergents.io',
 }
 
 function OnePage() {
@@ -59,7 +59,7 @@ function OnePage() {
         {/* Profile Section */}
         <CompactProfile
           name="Bowen"
-          tagline="I'm building AI applications that change our way of working"
+          tagline="I'm building AI applications that transform our way of working"
           imageUrl="/profile.jpg"
         />
 
@@ -80,6 +80,8 @@ function OnePage() {
                 onClick={() => {
                   if (project.internal && project.link === '/systemic') {
                     navigate('/systemic')
+                  } else if (!project.internal && project.link && project.link !== '#') {
+                    window.open(project.link, '_blank', 'noopener,noreferrer')
                   }
                 }}
               >

@@ -12,6 +12,18 @@
     --accent: 107 140 255;
   }
 
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
   body {
     @apply bg-dark-primary text-text-primary;
     font-feature-settings: "ss01", "cv10";

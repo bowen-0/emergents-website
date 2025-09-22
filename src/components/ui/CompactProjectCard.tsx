@@ -57,39 +57,15 @@ export const CompactProjectCard: React.FC<CompactProjectCardProps> = ({
 
           {/* Content */}
           <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-2">
+            <div className="mb-2">
               <h3 className="text-xl font-semibold gradient-text">
                 {title}
               </h3>
-              {status && (
-                <span className={cn('text-xs', statusColors[status])}>
-                  ●
-                </span>
-              )}
             </div>
 
-            <p className="text-sm text-text-secondary mb-3 line-clamp-2">
+            <p className="text-sm text-text-secondary mb-4 line-clamp-2">
               {description}
             </p>
-
-            {/* Tech Stack - Compact */}
-            {techStack.length > 0 && (
-              <div className="flex flex-wrap gap-1.5 mb-3">
-                {techStack.slice(0, 3).map((tech, index) => (
-                  <span
-                    key={index}
-                    className="px-2 py-0.5 text-xs rounded-full bg-white/5 text-text-secondary border border-white/10"
-                  >
-                    {tech}
-                  </span>
-                ))}
-                {techStack.length > 3 && (
-                  <span className="px-2 py-0.5 text-xs text-text-muted">
-                    +{techStack.length - 3} more
-                  </span>
-                )}
-              </div>
-            )}
 
             {/* Link */}
             {link && link !== '#' && (
@@ -100,10 +76,10 @@ export const CompactProjectCard: React.FC<CompactProjectCardProps> = ({
                 className="inline-flex items-center text-sm text-accent-purple hover:text-accent-pink transition-colors duration-200"
                 whileHover={{ x: 2 }}
                 onClick={(e) => {
-                  if (link.startsWith('/')) {
+                  e.stopPropagation()
+                  if (!link.startsWith('/')) {
                     e.preventDefault()
-                  } else {
-                    e.stopPropagation()
+                    window.open(link, '_blank', 'noopener,noreferrer')
                   }
                 }}
               >

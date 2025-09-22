@@ -77,7 +77,7 @@ export const CompactProfile: React.FC<CompactProfileProps> = ({
         className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-4"
       >
         I'm building <span className="gradient-text">AI applications</span> that<br />
-        change our way of working:
+        transform our ways of working:
       </motion.p>
     </div>
   )
