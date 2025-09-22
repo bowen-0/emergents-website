@@ -92,14 +92,20 @@ export const CompactProjectCard: React.FC<CompactProjectCardProps> = ({
             )}
 
             {/* Link */}
-            {link && (
+            {link && link !== '#' && (
               <motion.a
                 href={link}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={link.startsWith('/') ? '_self' : '_blank'}
+                rel={link.startsWith('/') ? undefined : 'noopener noreferrer'}
                 className="inline-flex items-center text-sm text-accent-purple hover:text-accent-pink transition-colors duration-200"
                 whileHover={{ x: 2 }}
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  if (link.startsWith('/')) {
+                    e.preventDefault()
+                  } else {
+                    e.stopPropagation()
+                  }
+                }}
               >
                 <span>View Project</span>
                 <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

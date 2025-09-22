@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { SinglePageLayout } from './components/layout/SinglePageLayout'
 import { CompactProfile } from './components/sections/CompactProfile'
@@ -14,7 +14,8 @@ const projects = [
     icon: <SystemicIcon className="w-full h-full" />,
     techStack: ['React', 'TypeScript', 'Node.js', 'AI/ML', 'Miro API'],
     status: 'active' as const,
-    link: '#',
+    link: '/systemic',
+    internal: true,
   },
   {
     title: 'Coachify',
@@ -23,6 +24,7 @@ const projects = [
     techStack: ['Next.js', 'Python', 'Voice AI', 'OpenAI', 'WebRTC'],
     status: 'beta' as const,
     link: '#',
+    internal: false,
   },
 ]
 
@@ -34,6 +36,24 @@ const socialLinks = {
 }
 
 function OnePage() {
+  const [currentPage, setCurrentPage] = useState<'main' | 'systemic'>('main')
+
+  // Handle navigation
+  if (currentPage === 'systemic') {
+    const SystemicLanding = React.lazy(() => import('./SystemicLanding'))
+    return (
+      <React.Suspense fallback={
+        <SinglePageLayout>
+          <div className="flex items-center justify-center h-full">
+            <div className="text-text-secondary">Loading...</div>
+          </div>
+        </SinglePageLayout>
+      }>
+        <SystemicLanding onBack={() => setCurrentPage('main')} />
+      </React.Suspense>
+    )
+  }
+
   return (
     <SinglePageLayout>
       <div className="w-full max-w-4xl mx-auto flex flex-col items-center justify-start gap-4 md:gap-6 mt-4">
@@ -72,6 +92,11 @@ function OnePage() {
                 initial={{ opacity: 0, x: index === 0 ? -20 : 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                onClick={() => {
+                  if (project.internal && project.link === '/systemic') {
+                    setCurrentPage('systemic')
+                  }
+                }}
               >
                 <CompactProjectCard {...project} />
               </motion.div>
