@@ -89,7 +89,6 @@ function PrivacyPolicy() {
             <ul className="text-text-secondary space-y-3 mb-6">
               <li>• <strong className="text-white">Map Generation:</strong> Your prompts are sent to the AI model to generate system maps</li>
               <li>• <strong className="text-white">App Functionality:</strong> Board IDs are used to place generated content on the correct board</li>
-              <li>• <strong className="text-white">User Context:</strong> User IDs help identify the context but are not stored</li>
             </ul>
 
             <h2 className="text-2xl font-semibold text-white mt-8 mb-4">Data Storage</h2>
@@ -98,7 +97,7 @@ function PrivacyPolicy() {
             </p>
             <ul className="text-text-secondary space-y-3 mb-6">
               <li>• <strong className="text-white">No Persistent Storage:</strong> We don't store your prompts, user data, or generated content</li>
-              <li>• <strong className="text-white">Prompts:</strong> Processed immediately and discarded after generating the map</li>
+              <li>• <strong className="text-white">Prompts:</strong> Processed immediately for map generation</li>
               <li>• <strong className="text-white">Generated Content:</strong> Created directly on your Miro board by the Miro SDK</li>
               <li>• <strong className="text-white">User Data:</strong> No user information is retained after processing</li>
             </ul>
