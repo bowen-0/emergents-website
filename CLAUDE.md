@@ -28,17 +28,17 @@ This is a React-based personal website with a glassmorphism design system built 
 
 ### Routing Architecture
 
-The app uses a **client-side navigation pattern** without traditional routing:
-- `OnePage.tsx` serves as the main router with local state management
-- Navigation between pages is handled by `useState` with conditional rendering
-- Internal pages (like `/systemic`) are lazily loaded React components
-- External project links navigate to external URLs
+The app uses **React Router** with distinct routes:
+- `/` - Main homepage (`OnePage.tsx`) with profile and project cards
+- `/systemic` - Systemic project landing page (`SystemicLanding.tsx`)
+- `/systemic/privacy` - Privacy policy page (`PrivacyPolicy.tsx`)
 
 ### Core Navigation Flow
 ```
-App.tsx → OnePage.tsx → [main | systemic]
-├── main: Shows profile + project cards
-└── systemic: SystemicLanding.tsx (lazily loaded)
+App.tsx (BrowserRouter) → Routes
+├── "/" → OnePage.tsx (main profile page)
+├── "/systemic" → SystemicLanding.tsx
+└── "/systemic/privacy" → PrivacyPolicy.tsx
 ```
 
 ### Component Structure
@@ -82,14 +82,15 @@ App.tsx → OnePage.tsx → [main | systemic]
 ### Project Configuration
 
 - **Styling**: Tailwind CSS with PostCSS
-- **Utils**: `cn()` utility using `clsx` and `tailwind-merge` for conditional classes
+- **Utils**: `cn()` utility using `clsx` and `tailwind-merge` for conditional classes (`src/lib/utils.ts`)
 - **Assets**: Public folder for images (`/profile.jpg`, `/emergents-logo.png`)
 - **TypeScript**: Strict configuration with Vite compilation
 
 ### Key Patterns
 
-1. **Conditional Rendering Navigation**: Uses state-based page switching instead of routing
+1. **React Router Navigation**: Standard routing with `useNavigate` for programmatic navigation
 2. **Glassmorphism Design**: Heavy use of backdrop-blur and glass effects
 3. **Animation Staging**: Framer Motion with staggered entrance animations
 4. **Responsive Design**: Mobile-first approach with `md:` breakpoints
 5. **Component Composition**: Reusable layout and UI components with consistent APIs
+6. **Project Navigation**: Internal routes use `navigate()`, external links use `window.open()`
