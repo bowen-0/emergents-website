@@ -1,4 +1,3 @@
-import React from 'react'
 import { Navigation } from './components/ui/Navigation'
 import { PersonalHero } from './components/sections/PersonalHero'
 import { ProjectsGrid, Project } from './components/sections/ProjectsGrid'

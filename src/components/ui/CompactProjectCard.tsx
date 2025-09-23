@@ -1,4 +1,3 @@
-import React from 'react'
 import { cn } from '../../lib/utils'
 import { motion } from 'framer-motion'
 
@@ -6,25 +5,16 @@ interface CompactProjectCardProps {
   title: string
   description: string
   icon?: React.ReactNode
-  techStack?: string[]
   link?: string
-  status?: 'active' | 'beta' | 'coming-soon'
   className?: string
 }
 
-const statusColors = {
-  'active': 'text-green-400',
-  'beta': 'text-yellow-400',
-  'coming-soon': 'text-blue-400',
-}
 
 export const CompactProjectCard: React.FC<CompactProjectCardProps> = ({
   title,
   description,
   icon,
-  techStack = [],
   link,
-  status = 'active',
   className,
 }) => {
   return (

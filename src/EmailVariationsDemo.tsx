@@ -1,4 +1,3 @@
-import React from 'react'
 import { motion } from 'framer-motion'
 import { ScrollableLayout } from './components/layout/ScrollableLayout'
 import { EmailCapture } from './components/sections/EmailCapture'
