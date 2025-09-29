@@ -13,11 +13,11 @@ export const SinglePageLayout: React.FC<SinglePageLayoutProps> = ({
 }) => {
   return (
     <div className={cn(
-      'relative min-h-screen h-screen overflow-hidden bg-dark-primary',
+      'relative min-h-screen bg-dark-primary overflow-hidden',
       className
     )}>
       {/* Background Effects */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 -z-10 overflow-hidden">
         <GlowOrb size="lg" color="purple" className="top-10 -left-32 opacity-30" />
         <GlowOrb size="lg" color="pink" className="bottom-10 -right-32 opacity-30" />
         <GlowOrb size="md" color="cyan" className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20" animate />
@@ -29,7 +29,7 @@ export const SinglePageLayout: React.FC<SinglePageLayoutProps> = ({
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 h-full flex flex-col justify-start items-center px-6 pt-8 md:pt-12 pb-8">
+      <div className="relative z-10 flex flex-col justify-start items-center px-6 pt-8 md:pt-12 pb-8">
         {children}
       </div>
     </div>

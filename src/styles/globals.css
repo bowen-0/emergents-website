@@ -21,35 +21,47 @@
   html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
+    min-height: 100vh;
   }
 
   body {
     @apply bg-dark-primary text-text-primary;
     font-feature-settings: "ss01", "cv10";
+    overflow-x: hidden;
+  }
+
+  #root {
+    min-height: 100vh;
+    overflow-x: hidden;
   }
 
   html {
     scroll-behavior: smooth;
   }
 
-  /* Custom scrollbar */
+  /* Custom scrollbar - subtle styling for webkit browsers */
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-dark-secondary;
+    background: transparent;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-accent-purple/30 rounded-full;
-    border: 2px solid transparent;
+    @apply bg-accent-purple/20 rounded-full;
+    border: 1px solid transparent;
     background-clip: padding-box;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-accent-purple/50;
+    @apply bg-accent-purple/40;
+  }
+
+  /* Firefox scrollbar support */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(186, 156, 255, 0.2) transparent;
   }
 }
 
