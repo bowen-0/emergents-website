@@ -3,14 +3,12 @@ import { motion } from 'framer-motion'
 
 interface CompactProfileProps {
   name: string
-  tagline: string
   imageUrl?: string
   className?: string
 }
 
 export const CompactProfile: React.FC<CompactProfileProps> = ({
   name,
-  tagline,
   imageUrl,
   className,
 }) => {
@@ -68,7 +66,7 @@ export const CompactProfile: React.FC<CompactProfileProps> = ({
         transition={{ duration: 0.5, delay: 0.2 }}
         className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-4"
       >
-        {tagline}
+        I'm building <span className="gradient-text">AI applications</span> that transform our ways of working:
       </motion.p>
     </div>
   )

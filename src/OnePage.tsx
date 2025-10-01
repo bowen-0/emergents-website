@@ -58,7 +58,6 @@ function OnePage() {
         {/* Profile Section */}
         <CompactProfile
           name="Bowen"
-          tagline="I'm building AI applications that transform our way of working"
           imageUrl="/profile.jpg"
         />
 

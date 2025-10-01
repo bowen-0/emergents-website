@@ -53,7 +53,7 @@ export const CompactProjectCard: React.FC<CompactProjectCardProps> = ({
               </h3>
             </div>
 
-            <p className="text-sm text-text-secondary mb-4 line-clamp-2">
+            <p className="text-sm text-text-secondary mb-4 line-clamp-none md:line-clamp-2">
               {description}
             </p>
 
