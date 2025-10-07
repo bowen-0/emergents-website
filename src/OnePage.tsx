@@ -89,11 +89,44 @@ function OnePage() {
           </div>
         </motion.div>
 
+        {/* Consulting Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.7 }}
+          className="w-full mt-10 mb-8"
+        >
+          {/* Separator */}
+          <div className="w-full border-t border-white/10 mb-7" />
+
+          {/* Content */}
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 gradient-text">
+              Work with Me
+            </h2>
+            <div className="text-base md:text-lg text-text-secondary mb-6">
+              <p className="mb-3">I take on select AI projects:</p>
+              <p className="text-sm md:text-base">
+                Strategic guidance • Rapid prototypes • Full implementation
+              </p>
+            </div>
+            <a
+              href={`mailto:${socialLinks.email}?subject=Consulting%20Inquiry`}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg glass border border-white/10 hover:border-accent-purple/30 transition-all duration-200 hover:scale-105 text-text-primary hover:text-accent-purple"
+            >
+              <span>Schedule a free consultation</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </motion.div>
+
         {/* Social Links - moved to bottom */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
           className="flex justify-center gap-3 mt-8"
         >
           {socialLinks.linkedin && (
