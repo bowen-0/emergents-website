@@ -6,15 +6,23 @@ interface CompactProjectCardProps {
   description: string
   icon?: React.ReactNode
   link?: string
+  status?: 'active' | 'beta' | 'live'
   className?: string
 }
 
+
+const statusConfig = {
+  live: { label: 'Live', dotClass: 'bg-green-400', badgeClass: 'bg-green-500/10 text-green-400 border-green-500/20', pulse: true },
+  beta: { label: 'Beta', dotClass: 'bg-amber-400', badgeClass: 'bg-amber-500/10 text-amber-400 border-amber-500/20', pulse: false },
+  active: { label: 'Active', dotClass: 'bg-accent-purple', badgeClass: 'bg-accent-purple/10 text-accent-purple border-accent-purple/20', pulse: false },
+}
 
 export const CompactProjectCard: React.FC<CompactProjectCardProps> = ({
   title,
   description,
   icon,
   link,
+  status,
   className,
 }) => {
   return (
@@ -47,10 +55,23 @@ export const CompactProjectCard: React.FC<CompactProjectCardProps> = ({
 
           {/* Content */}
           <div className="flex-1 min-w-0">
-            <div className="mb-2">
+            <div className="mb-2 flex items-center gap-2">
               <h3 className="text-xl font-semibold gradient-text">
                 {title}
               </h3>
+              {status && (
+                <span className={cn(
+                  'inline-flex items-center gap-1.5 px-2 py-0.5 text-xs font-medium rounded-full border',
+                  statusConfig[status].badgeClass
+                )}>
+                  <span className={cn(
+                    'w-1.5 h-1.5 rounded-full',
+                    statusConfig[status].dotClass,
+                    status === 'live' && 'animate-pulse'
+                  )} />
+                  {statusConfig[status].label}
+                </span>
+              )}
             </div>
 
             <p className="text-sm text-text-secondary mb-4 line-clamp-none md:line-clamp-2">

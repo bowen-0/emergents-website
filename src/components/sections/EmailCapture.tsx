@@ -5,9 +5,10 @@ import { cn } from '../../lib/utils'
 interface EmailCaptureProps {
   className?: string
   variant?: 'default' | 'highlighted' | 'gradient' | 'floating' | 'banner'
+  mode?: 'waitlist' | 'newsletter'
 }
 
-export const EmailCapture: React.FC<EmailCaptureProps> = ({ className, variant = 'default' }) => {
+export const EmailCapture: React.FC<EmailCaptureProps> = ({ className, variant = 'default', mode = 'waitlist' }) => {
   const [email, setEmail] = useState('')
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState('')
@@ -135,10 +136,12 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({ className, variant =
             >
               <div className="text-center mb-8">
                 <h3 className={cn('text-xl font-semibold mb-2', getTitleClasses())}>
-                  Join the Waitlist
+                  {mode === 'newsletter' ? 'Stay Updated' : 'Join the Waitlist'}
                 </h3>
                 <p className="text-sm text-text-secondary">
-                  Be the first to know when Systemic launches on Miro Marketplace
+                  {mode === 'newsletter'
+                    ? 'Get notified about new features, tips, and updates'
+                    : 'Be the first to know when Systemic launches on Miro Marketplace'}
                 </p>
               </div>
 
@@ -202,18 +205,14 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({ className, variant =
               disabled={isLoading}
               className={cn(
                 'w-full py-3 rounded-lg font-medium transition-all duration-200',
-                'bg-gradient-to-r from-accent-purple to-accent-pink',
-                'hover:shadow-lg hover:shadow-accent-purple/25',
+                'bg-gradient-to-r from-violet-700 to-purple-600',
+                'hover:shadow-lg hover:shadow-purple-700/25',
                 'disabled:opacity-50 disabled:cursor-not-allowed',
-                'relative overflow-hidden group'
               )}
             >
-              <span className="relative z-10">
-                {isLoading ? 'Joining...' : 'Join Waitlist'}
-              </span>
-
-              {/* Shimmer effect on hover */}
-              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+              {isLoading
+                ? (mode === 'newsletter' ? 'Subscribing...' : 'Joining...')
+                : (mode === 'newsletter' ? 'Subscribe' : 'Join Waitlist')}
             </button>
           </motion.form>
         ) : (
@@ -237,9 +236,13 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({ className, variant =
             </motion.div>
 
             <div>
-              <h3 className="text-xl font-semibold mb-2">You're on the list!</h3>
+              <h3 className="text-xl font-semibold mb-2">
+                {mode === 'newsletter' ? "You're subscribed!" : "You're on the list!"}
+              </h3>
               <p className="text-sm text-text-secondary mb-4">
-                We'll notify you at <span className="text-accent-purple">{email}</span> when Systemic launches.
+                {mode === 'newsletter'
+                  ? <>We'll send updates to <span className="text-accent-purple">{email}</span></>
+                  : <>We'll notify you at <span className="text-accent-purple">{email}</span> when Systemic launches.</>}
               </p>
             </div>
 

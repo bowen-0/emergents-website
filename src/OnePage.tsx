@@ -10,10 +10,10 @@ import './styles/globals.css'
 const projects = [
   {
     title: 'Systemic',
-    description: 'Create systems maps in Miro with natural language. Visualise complex relationships.',
+    description: 'AI-powered systems maps in Miro. Live on the Miro Marketplace.',
     icon: <SystemicIcon className="w-full h-full" />,
     techStack: ['React', 'TypeScript', 'Node.js', 'AI/ML', 'Miro API'],
-    status: 'active' as const,
+    status: 'live' as const,
     link: '/systemic',
     internal: true,
   },

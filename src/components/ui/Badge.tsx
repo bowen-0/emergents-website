@@ -10,7 +10,7 @@ interface BadgeProps {
 
 const variantClasses = {
   default: 'bg-accent-purple/20 text-accent-purple border-accent-purple/30',
-  gradient: 'bg-gradient-to-r from-accent-purple to-accent-pink text-white',
+  gradient: 'bg-gradient-to-r from-violet-700 to-purple-600 text-white',
   outline: 'bg-transparent border-accent-purple/50 text-accent-purple',
   glass: 'glass text-text-primary',
 }
