@@ -1,5 +1,7 @@
 # Update Emergents Website for Systemic Miro Marketplace Launch
 
+**Status: Completed** — 2026-02-24
+
 ## Context
 Systemic is now live on the Miro Marketplace. The website at `emergents.io/systemic` still shows pre-launch content ("Join the Waitlist", "Be the first to know when Systemic launches"). It needs to reflect the live product status, showcase the 5-min YouTube demo video, display pricing tiers (Free vs Pro), and update features to match the shipped product.
 
@@ -34,14 +36,13 @@ Systemic is now live on the Miro Marketplace. The website at `emergents.io/syste
 
 **Free card** (`glass rounded-xl border border-white/10 p-8`):
 - €0/month
-- Features: 100 maps/month, AI systems map generation, Expand maps, Auto-format layout, System summary cards
-- CTA: "Install Free" (glass button → Miro Marketplace URL)
+- Features: AI systems map generation, Expand maps, Auto-format layout, System summary cards
 
 **Pro card** (`glass rounded-xl border-2 border-accent-purple/30 p-8`, purple glow):
-- "Recommended" badge (existing `Badge` component, `variant="gradient"`)
+- "Early Supporter Price" badge (`Badge` component, `variant="gradient"`)
 - €10/month
 - Features: Everything in Free + Research-backed citations, Deeper analysis, Priority new features, 100 Pro actions/month
-- CTA: "Get Pro" (gradient button → Miro Marketplace URL)
+- Single shared "Install on Miro" CTA below both cards
 
 - Purple checkmark icons for feature lists
 - Framer Motion staggered entrance
@@ -69,7 +70,8 @@ Systemic is now live on the Miro Marketplace. The website at `emergents.io/syste
 
 ### Step 6: Restructure `SystemicLanding.tsx`
 **Modify:** `src/SystemicLanding.tsx`
-- Add `MIRO_MARKETPLACE_URL` constant (placeholder until user provides URL)
+- `MIRO_MARKETPLACE_URL = 'https://miro.com/marketplace/systemic/'`
+- `YOUTUBE_VIDEO_ID = '3QmOgPsgcKI'`
 - **Hero changes:**
   - Add "Live on Miro Marketplace" badge (green pulse dot + text) between title and value prop
   - Add primary "Install on Miro" gradient CTA button below value prop
@@ -79,9 +81,8 @@ Systemic is now live on the Miro Marketplace. The website at `emergents.io/syste
   - Grid: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3` (accommodates 5 cards: 3+2)
 - **Import & insert** `PricingSection` after features
 - **Change** `<EmailCapture variant="floating" />` to `<EmailCapture variant="floating" mode="newsletter" />`
-- Remove unused `EmailVariationsDemo` import and `showVariations` state
 
-## Files to Modify
+## Files Modified
 | File | Change |
 |------|--------|
 | `src/components/sections/VideoDemo.tsx` | **New** — YouTube embed component |
@@ -91,15 +92,9 @@ Systemic is now live on the Miro Marketplace. The website at `emergents.io/syste
 | `src/OnePage.tsx` | Update Systemic card data (status, description) |
 | `src/SystemicLanding.tsx` | Restructure: hero CTA, video, pricing, updated features |
 
-## Info Needed Before Implementation
-- **YouTube video ID** (from the URL, e.g. `dQw4w9WgXcQ`)
-- **Miro Marketplace listing URL** for the install buttons
-
-## Verification
-1. `npm run build` — TypeScript + Vite build passes
-2. `npm run dev` — visual check all 3 routes (`/`, `/systemic`, `/systemic/privacy`)
-3. Responsive: check mobile, tablet, desktop breakpoints
-4. YouTube embed loads and plays correctly
-5. "Install on Miro" buttons link to correct URL
-6. Newsletter form still submits to Google Sheets
-7. Privacy policy page unchanged
+## Notes
+- Button gradient settled on `from-violet-700 to-purple-600` (darker than original for better contrast)
+- Badge `gradient` variant updated to match button gradient
+- Pricing: removed per-card CTAs in favour of single shared "Install on Miro" CTA
+- Pro card uses "Early Supporter Price" badge instead of "Recommended"
+- No map limit mentioned on Free tier (no such restriction exists)
