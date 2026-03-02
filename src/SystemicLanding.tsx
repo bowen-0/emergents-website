@@ -8,7 +8,7 @@ import { VideoDemo } from './components/sections/VideoDemo'
 import { PricingSection } from './components/sections/PricingSection'
 
 const MIRO_MARKETPLACE_URL = 'https://miro.com/marketplace/systemic/'
-const YOUTUBE_VIDEO_ID = '3QmOgPsgcKI'
+const YOUTUBE_VIDEO_ID = 'TlP4CL40FME'
 
 interface SystemicLandingProps {
   onBack?: () => void
