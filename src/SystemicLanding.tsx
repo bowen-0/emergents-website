@@ -6,6 +6,7 @@ import { EmailCapture } from './components/sections/EmailCapture'
 import { SystemMapDemo } from './components/sections/SystemMapDemo'
 import { VideoDemo } from './components/sections/VideoDemo'
 import { PricingSection } from './components/sections/PricingSection'
+import { Badge } from './components/ui/Badge'
 
 const MIRO_MARKETPLACE_URL = 'https://miro.com/marketplace/systemic/'
 const YOUTUBE_VIDEO_ID = 'TlP4CL40FME'
@@ -14,7 +15,14 @@ interface SystemicLandingProps {
   onBack?: () => void
 }
 
-const features = [
+interface Feature {
+  title: string
+  description: string
+  icon: string
+  pro?: boolean
+}
+
+const features: Feature[] = [
   {
     title: 'Create',
     description: 'Transform prompts into visual systems maps with AI',
@@ -39,6 +47,13 @@ const features = [
     title: 'Research',
     description: 'Get research-backed citations and deeper analysis',
     icon: '🔬',
+    pro: true,
+  },
+  {
+    title: 'Your Sources',
+    description: 'Upload URLs and PDFs as source material',
+    icon: '📎',
+    pro: true,
   },
 ]
 
@@ -111,7 +126,7 @@ function SystemicLanding({ onBack }: SystemicLandingProps) {
               <span className="text-white/90">
                 Turn simple prompts into AI-generated systems maps in Miro.
                 <br />
-                Visualise complex relationships. Gain insights.
+                Visualise causal relationships. Explore feedback loops.
               </span>
             </p>
           </div>
@@ -165,7 +180,7 @@ function SystemicLanding({ onBack }: SystemicLandingProps) {
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {features.slice(0, 3).map((feature, index) => (
+            {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -174,22 +189,10 @@ function SystemicLanding({ onBack }: SystemicLandingProps) {
                 className="glass rounded-xl border border-white/10 p-6 hover:border-accent-purple/30 transition-all duration-300 text-center"
               >
                 <div className="text-3xl mb-4">{feature.icon}</div>
-                <h4 className="text-lg font-semibold mb-2">{feature.title}</h4>
-                <p className="text-sm text-text-secondary">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
-            {features.slice(3).map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                className="glass rounded-xl border border-white/10 p-6 hover:border-accent-purple/30 transition-all duration-300 text-center sm:w-1/3"
-              >
-                <div className="text-3xl mb-4">{feature.icon}</div>
-                <h4 className="text-lg font-semibold mb-2">{feature.title}</h4>
+                <h4 className="text-lg font-semibold mb-2 flex items-center justify-center gap-2">
+                  {feature.title}
+                  {feature.pro && <Badge variant="gradient" size="sm">Pro</Badge>}
+                </h4>
                 <p className="text-sm text-text-secondary">{feature.description}</p>
               </motion.div>
             ))}

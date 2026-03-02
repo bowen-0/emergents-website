@@ -19,9 +19,9 @@ const freePlan = {
   period: '/month',
   features: [
     'AI systems map generation',
-    'Expand maps',
-    'Auto-format layout',
-    'System summary cards',
+    'Intelligently expand maps',
+    'Auto-format',
+    'System summaries',
   ],
 }
 
@@ -33,8 +33,9 @@ const proPlan = {
     'Everything in Free',
     'Research-backed citations',
     'Deeper analysis',
-    'Priority new features',
+    'Upload your own sources',
     '100 Pro actions/month',
+    'Priority support',
   ],
 }
 
