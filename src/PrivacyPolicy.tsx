@@ -34,102 +34,82 @@ function PrivacyPolicy() {
               Privacy Policy for Systemic
             </h1>
             <p className="text-text-secondary mb-8">
-              <strong>Last Updated: September 2025</strong>
+              <strong>Last Updated: March 2026</strong>
             </p>
 
             <p className="text-text-secondary mb-8">
-              Systemic ("we", "our", or "the app") is a Miro application that generates AI-powered system maps. This privacy policy explains what information we collect and how we use it.
+              Systemic ("we", "our", or "the app") is a Miro application that generates AI-powered system maps. This privacy policy explains what information we collect, what we process, and how we handle your data.
             </p>
 
+            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">Newsletter</h2>
+            <p className="text-text-secondary mb-4">
+              You may sign up for product updates through our website. We collect:
+            </p>
+            <ul className="text-text-secondary space-y-2 mb-6">
+              <li>• Your email address</li>
+              <li>• Communication preferences</li>
+            </ul>
             <p className="text-text-secondary mb-8">
-              We collect information in two contexts:
+              This information is used only for product updates, is not shared with third parties, and can be removed by contacting us at bowen@emergents.io.
             </p>
-            <ul className="text-text-secondary space-y-2 mb-8">
-              <li>• When you join our waitlist (before using the app)</li>
-              <li>• When you use the Systemic app in Miro</li>
-            </ul>
 
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">Waitlist Information Collection</h2>
-
-            <p className="text-text-secondary mb-4">
-              Before you use the Systemic app, you may sign up for our waitlist through our website. We collect:
-            </p>
-            <ul className="text-text-secondary space-y-2 mb-6">
-              <li>• Your email address (for launch notifications)</li>
-              <li>• Communication preferences (updates consent)</li>
-              <li>• Timestamp of signup</li>
-            </ul>
-
-            <p className="text-text-secondary mb-6">This waitlist information is:</p>
-            <ul className="text-text-secondary space-y-2 mb-8">
-              <li>• Stored securely in Google Sheets</li>
-              <li>• Used only for launch notifications and product updates</li>
-              <li>• Not shared with third parties</li>
-              <li>• Can be removed by contacting us at bowen@emergents.io</li>
-            </ul>
-
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">App Usage Information Collection</h2>
+            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">What We Process & Store</h2>
 
             <p className="text-text-secondary mb-6">
-              When you use the Systemic app within Miro, we process (but do not store) the following information:
+              We only store what's necessary to make the app work. We don't collect data for advertising, profiling, or any purpose beyond delivering the service.
+            </p>
+
+            <p className="text-text-secondary mb-4">
+              When you use Systemic in Miro, we process the following inputs to generate your maps:
             </p>
             <ul className="text-text-secondary space-y-2 mb-6">
-              <li>• Text prompts you enter to generate system maps</li>
-              <li>• The Miro board ID where you're working</li>
-              <li>• Your Miro user ID (from Miro context, not stored by us)</li>
+              <li>• Text prompts you enter</li>
+              <li>• URLs and documents you provide as source material</li>
+              <li>• Your Miro board ID (to place content on the correct board)</li>
             </ul>
-
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">Authentication</h2>
-            <p className="text-text-secondary mb-6">
-              Systemic uses Miro's built-in authentication through the Miro SDK. We don't store or manage your Miro credentials or access tokens - authentication is handled entirely by Miro's platform.
-            </p>
-
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">How We Use Your Information</h2>
-            <ul className="text-text-secondary space-y-3 mb-6">
-              <li>• <strong className="text-white">Map Generation:</strong> Your prompts are sent to the AI model to generate system maps</li>
-              <li>• <strong className="text-white">App Functionality:</strong> Board IDs are used to place generated content on the correct board</li>
-            </ul>
-
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">Data Storage</h2>
             <p className="text-text-secondary mb-4">
-              Systemic is designed to be stateless and privacy-focused:
+              <strong className="text-white">Your prompts, URLs, documents, and generated content are never stored.</strong> They are processed in real-time and discarded. Generated maps are created directly on your Miro board.
             </p>
-            <ul className="text-text-secondary space-y-3 mb-6">
-              <li>• <strong className="text-white">No Persistent Storage:</strong> We don't store your prompts, user data, or generated content</li>
-              <li>• <strong className="text-white">Prompts:</strong> Processed immediately for map generation</li>
-              <li>• <strong className="text-white">Generated Content:</strong> Created directly on your Miro board by the Miro SDK</li>
-              <li>• <strong className="text-white">User Data:</strong> No user information is retained after processing</li>
+
+            <p className="text-text-secondary mb-4">
+              We do store minimal account data needed to run the service:
+            </p>
+            <ul className="text-text-secondary space-y-2 mb-6">
+              <li>• <strong className="text-white">Authentication tokens:</strong> Stored securely on our servers to keep you signed in and interact with your Miro board on your behalf</li>
+              <li>• <strong className="text-white">Subscription status:</strong> Whether you have a Free or Pro account</li>
+              <li>• <strong className="text-white">Usage counts:</strong> Monthly request counts for rate limiting, automatically deleted after a short period</li>
             </ul>
+
+            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">Payments</h2>
+            <p className="text-text-secondary mb-8">
+              Pro subscriptions are processed by Stripe. We do not store your payment details — these are handled entirely by Stripe. You can review{' '}
+              <a
+                href="https://stripe.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent-purple hover:text-accent-pink transition-colors underline"
+              >
+                Stripe's privacy policy
+              </a>
+              {' '}for details on how they handle payment information.
+            </p>
 
             <h2 className="text-2xl font-semibold text-white mt-8 mb-4">Third-Party Services</h2>
-            <p className="text-text-secondary mb-4">We use the following services to provide functionality:</p>
+            <p className="text-text-secondary mb-4">We use the following categories of services:</p>
             <ul className="text-text-secondary space-y-3 mb-6">
-              <li>• <strong className="text-white">AI Model:</strong> Processes your prompts to generate system maps</li>
-              <li>• <strong className="text-white">Cloudflare:</strong> Hosts our application infrastructure</li>
-              <li>• <strong className="text-white">Miro SDK:</strong> Handles authentication and creates visual elements on your boards</li>
-            </ul>
-
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">Data Security</h2>
-            <p className="text-text-secondary mb-4">We implement industry-standard security measures:</p>
-            <ul className="text-text-secondary space-y-3 mb-6">
-              <li>• All data transmission occurs over encrypted HTTPS connections</li>
-              <li>• We don't store your prompts or generated content after processing</li>
-              <li>• No persistent user data means no stored data to secure</li>
+              <li>• <strong className="text-white">AI services:</strong> Process your prompts and source material to generate system maps</li>
+              <li>• <strong className="text-white">Payment processing:</strong> Handles Pro subscription billing</li>
+              <li>• <strong className="text-white">Hosting infrastructure:</strong> Hosts the application and stores account data</li>
+              <li>• <strong className="text-white">Error monitoring:</strong> Helps us identify and fix issues</li>
+              <li>• <strong className="text-white">Miro SDK:</strong> Handles board authentication and creates visual elements on your boards</li>
             </ul>
 
             <h2 className="text-2xl font-semibold text-white mt-8 mb-4">Your Rights</h2>
             <p className="text-text-secondary mb-4">You have the right to:</p>
             <ul className="text-text-secondary space-y-3 mb-6">
-              <li>• <strong className="text-white">Access:</strong> Since we don't store personal data, there's no stored data to access</li>
-              <li>• <strong className="text-white">No Data to Delete:</strong> We don't retain your information after processing</li>
-              <li>• <strong className="text-white">Revoke Access:</strong> Remove the app's access through your Miro settings</li>
-            </ul>
-
-            <h2 className="text-2xl font-semibold text-white mt-8 mb-4">Data Retention</h2>
-            <ul className="text-text-secondary space-y-3 mb-6">
-              <li>• <strong className="text-white">App Usage Data:</strong> No data is retained - all processing is transient</li>
-              <li>• <strong className="text-white">Prompts:</strong> Processed immediately and not stored</li>
-              <li>• <strong className="text-white">Authentication:</strong> Handled by Miro - we don't store credentials</li>
+              <li>• <strong className="text-white">Access or delete your data:</strong> Contact us at bowen@emergents.io to request access to or deletion of your account data</li>
+              <li>• <strong className="text-white">Revoke access:</strong> Remove the app's access through your Miro settings at any time</li>
+              <li>• <strong className="text-white">Unsubscribe:</strong> Manage your Pro subscription through the app, or contact us for assistance</li>
             </ul>
 
             <h2 className="text-2xl font-semibold text-white mt-8 mb-4">Children's Privacy</h2>
@@ -141,7 +121,6 @@ function PrivacyPolicy() {
             <p className="text-text-secondary mb-6">
               We may update this privacy policy. Changes will be posted at this URL with an updated date.
             </p>
-
 
             <div className="glass-heavy rounded-xl border border-white/20 p-6 mt-8">
               <h2 className="text-2xl font-semibold text-white mb-4">Contact Us</h2>
