@@ -9,7 +9,7 @@ import { PricingSection } from './components/sections/PricingSection'
 import { Badge } from './components/ui/Badge'
 
 const MIRO_MARKETPLACE_URL = 'https://miro.com/marketplace/systemic/'
-const YOUTUBE_VIDEO_ID = 'TlP4CL40FME'
+const YOUTUBE_VIDEO_ID = 'Oa2nwqIxOc8'
 
 interface SystemicLandingProps {
   onBack?: () => void
