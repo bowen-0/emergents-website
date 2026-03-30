@@ -22,7 +22,7 @@ const projects = [
     description: 'Voice-powered AI role-play for sales teams. Train anytime, master your sales technique.',
     icon: <CoachifyIcon className="w-full h-full" />,
     techStack: ['Next.js', 'Python', 'Voice AI', 'OpenAI', 'WebRTC'],
-    status: 'beta' as const,
+    status: 'early-access' as const,
     link: 'https://getcoachify.com',
     internal: false,
   },

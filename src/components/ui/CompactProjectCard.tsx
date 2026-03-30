@@ -6,7 +6,7 @@ interface CompactProjectCardProps {
   description: string
   icon?: React.ReactNode
   link?: string
-  status?: 'active' | 'beta' | 'live'
+  status?: 'active' | 'beta' | 'live' | 'early-access'
   className?: string
 }
 
@@ -15,6 +15,7 @@ const statusConfig = {
   live: { label: 'Live', dotClass: 'bg-green-400', badgeClass: 'bg-green-500/10 text-green-400 border-green-500/20', pulse: true },
   beta: { label: 'Beta', dotClass: 'bg-amber-400', badgeClass: 'bg-amber-500/10 text-amber-400 border-amber-500/20', pulse: false },
   active: { label: 'Active', dotClass: 'bg-accent-purple', badgeClass: 'bg-accent-purple/10 text-accent-purple border-accent-purple/20', pulse: false },
+  'early-access': { label: 'Early Access', dotClass: 'bg-sky-400', badgeClass: 'bg-sky-500/10 text-sky-400 border-sky-500/20', pulse: false },
 }
 
 export const CompactProjectCard: React.FC<CompactProjectCardProps> = ({
