@@ -239,6 +239,17 @@ function SystemicLanding({ onBack }: SystemicLandingProps) {
           transition={{ duration: 0.5, delay: 0.8 }}
           className="text-center text-sm text-text-muted mt-8"
         >
+          <p className="mb-2">
+            Also from Systemic: interactive stories and case studies at{' '}
+            <a
+              href="https://systemic.guide"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-text-secondary hover:text-accent-purple transition-colors underline"
+            >
+              systemic.guide
+            </a>
+          </p>
           <p>
             A Miro App by Emergents | {' '}
             <a

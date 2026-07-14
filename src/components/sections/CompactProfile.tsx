@@ -66,7 +66,7 @@ export const CompactProfile: React.FC<CompactProfileProps> = ({
         transition={{ duration: 0.5, delay: 0.2 }}
         className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-4"
       >
-        I'm building <span className="gradient-text">AI applications</span> that transform our ways of working:
+        I'm building <span className="gradient-text">AI applications</span> that transform our ways of working and learning:
       </motion.p>
     </div>
   )

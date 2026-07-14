@@ -26,6 +26,8 @@ export const CompactProjectCard: React.FC<CompactProjectCardProps> = ({
   status,
   className,
 }) => {
+  const isInternal = !!link && link.startsWith('/')
+
   return (
     <motion.div
       whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
@@ -83,21 +85,25 @@ export const CompactProjectCard: React.FC<CompactProjectCardProps> = ({
             {link && link !== '#' && (
               <motion.a
                 href={link}
-                target={link.startsWith('/') ? '_self' : '_blank'}
-                rel={link.startsWith('/') ? undefined : 'noopener noreferrer'}
+                target={isInternal ? '_self' : '_blank'}
+                rel={isInternal ? undefined : 'noopener noreferrer'}
                 className="inline-flex items-center text-sm text-accent-purple hover:text-accent-pink transition-colors duration-200"
                 whileHover={{ x: 2 }}
                 onClick={(e) => {
                   e.stopPropagation()
-                  if (!link.startsWith('/')) {
+                  if (!isInternal) {
                     e.preventDefault()
                     window.open(link, '_blank', 'noopener,noreferrer')
                   }
                 }}
               >
-                <span>View Project</span>
+                <span>{isInternal ? 'Learn more' : 'Visit site'}</span>
                 <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  {isInternal ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M13 6l6 6-6 6" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M8 7h9v9" />
+                  )}
                 </svg>
               </motion.a>
             )}

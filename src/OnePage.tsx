@@ -4,12 +4,22 @@ import { SinglePageLayout } from './components/layout/SinglePageLayout'
 import { CompactProfile } from './components/sections/CompactProfile'
 import { CompactProjectCard } from './components/ui/CompactProjectCard'
 import { SystemicIcon } from './components/icons/SystemicIcon'
+import { SystemicStoriesIcon } from './components/icons/SystemicStoriesIcon'
 import { CoachifyIcon } from './components/icons/CoachifyIcon'
 import './styles/globals.css'
 
 const projects = [
   {
-    title: 'Systemic',
+    title: 'Systemic Stories',
+    description: 'Interactive stories and case studies that teach systems thinking.',
+    icon: <SystemicStoriesIcon className="w-full h-full" />,
+    techStack: ['React', 'TypeScript', 'AI/ML', 'Interactive Storytelling'],
+    status: 'live' as const,
+    link: 'https://systemic.guide',
+    internal: false,
+  },
+  {
+    title: 'Systemic for Miro',
     description: 'AI-powered systems maps in Miro. Live on the Miro Marketplace.',
     icon: <SystemicIcon className="w-full h-full" />,
     techStack: ['React', 'TypeScript', 'Node.js', 'AI/ML', 'Miro API'],
@@ -22,7 +32,7 @@ const projects = [
     description: 'Voice-powered AI role-play for sales teams. Train anytime, master your sales technique.',
     icon: <CoachifyIcon className="w-full h-full" />,
     techStack: ['Next.js', 'Python', 'Voice AI', 'OpenAI', 'WebRTC'],
-    status: 'early-access' as const,
+    status: 'live' as const,
     link: 'https://getcoachify.com',
     internal: false,
   },
@@ -71,9 +81,14 @@ function OnePage() {
             {projects.map((project, index) => (
               <motion.div
                 key={project.title}
-                initial={{ opacity: 0, x: index === 0 ? -20 : 20 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                className={
+                  projects.length % 2 === 1 && index === projects.length - 1
+                    ? 'md:col-span-2 md:w-[calc(50%-0.75rem)] md:mx-auto'
+                    : undefined
+                }
                 onClick={() => {
                   if (project.internal && project.link === '/systemic') {
                     navigate('/systemic')
