@@ -18,6 +18,18 @@ npm run lint
 npm run preview
 ```
 
+## Deployment
+
+Hosted on Cloudflare Pages (project `emergents-website`, custom domain **emergents.io**).
+This is a **Direct-Upload** project — **not** git-connected, so `git push` does **not** deploy.
+Publishing is manual:
+
+    npm run build
+    wrangler pages deploy dist --project-name=emergents-website --branch=main
+
+`wrangler` authenticates as bowen@emergents.io (OAuth). Confirm the release is live by
+checking the hashed JS bundle at https://emergents.io matches `dist/assets/index-*.js`.
+
 ## Project Architecture
 
 This is a React-based personal website with a glassmorphism design system built using:
